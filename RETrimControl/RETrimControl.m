@@ -41,12 +41,12 @@
     if (self) {
         self.threshold = 22;
         _resourceBundle = resourceBundle;
+        self.backgroundColor=[UIColor redColor];	
+//        _outerView = [[UIImageView alloc] initWithFrame:CGRectMake(_threshold, frame.size.height / 2 - 4, frame.size.width - 1 - _threshold * 2, 9)];
+//        _outerView.image = [[self bundleImageNamed:@"Outer"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+//        [self addSubview:_outerView];
         
-        _outerView = [[UIImageView alloc] initWithFrame:CGRectMake(_threshold, frame.size.height / 2 - 4, frame.size.width - 1 - _threshold * 2, 9)];
-        _outerView.image = [[self bundleImageNamed:@"Outer"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-        [self addSubview:_outerView];
-        
-        _sliderMiddleView = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        _sliderMiddleView = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 40)];
         _sliderMiddleView.backgroundColor = [UIColor colorWithPatternImage:[self bundleImageNamed:@"SliderMiddle"]];
         [self addSubview:_sliderMiddleView];
         
@@ -59,7 +59,7 @@
         _leftValue = 0;
         _rightValue = 100;
         
-        _leftThumbView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, RANGESLIDER_THUMB_SIZE, 28)];
+        _leftThumbView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, RANGESLIDER_THUMB_SIZE, 40)];
         _leftThumbView.image = [self bundleImageNamed:@"Slider"];
         _leftThumbView.contentMode = UIViewContentModeLeft;
         _leftThumbView.userInteractionEnabled = YES;
@@ -69,16 +69,16 @@
         UIPanGestureRecognizer *leftPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftPan:)];
         [_leftThumbView addGestureRecognizer:leftPan];
         
-        _rightThumbView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width - RANGESLIDER_THUMB_SIZE, 0, RANGESLIDER_THUMB_SIZE, 28)];
+        _rightThumbView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width - RANGESLIDER_THUMB_SIZE, 0, RANGESLIDER_THUMB_SIZE, 40)];
         _rightThumbView.image = [self bundleImageNamed:@"Slider"];
         _rightThumbView.contentMode = UIViewContentModeRight;
         _rightThumbView.userInteractionEnabled = YES;
         _rightThumbView.clipsToBounds = YES;
         [self addSubview:_rightThumbView];
         
-        _innerView = [[UIImageView alloc] initWithFrame:CGRectMake(10, frame.size.height / 2 - 4, frame.size.width - 21, 9)];
-        _innerView.image = [[self bundleImageNamed:@"Inner"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-        [self addSubview:_innerView];
+//        _innerView = [[UIImageView alloc] initWithFrame:CGRectMake(10, frame.size.height / 2 - 4, frame.size.width - 21, 9)];
+//        _innerView.image = [[self bundleImageNamed:@"Inner"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+//        [self addSubview:_innerView];
         
         UIPanGestureRecognizer *rightPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightPan:)];
         [_rightThumbView addGestureRecognizer:rightPan];
@@ -116,10 +116,10 @@
     if (isnan(left)) left = 0;
     if (isnan(right)) right = 0;
 
-    _leftThumbView.center = CGPointMake(inset + left, 14);
-    _rightThumbView.center = CGPointMake(inset + right, 14);
+    _leftThumbView.center = CGPointMake(inset + left, 20);
+    _rightThumbView.center = CGPointMake(inset + right, 20);
 
-    _sliderMiddleView.frame = CGRectMake(_leftThumbView.frame.origin.x + RANGESLIDER_THUMB_SIZE, 0, _rightThumbView.frame.origin.x - _leftThumbView.frame.origin.x - RANGESLIDER_THUMB_SIZE, 28);
+    _sliderMiddleView.frame = CGRectMake(_leftThumbView.frame.origin.x + RANGESLIDER_THUMB_SIZE, 0, _rightThumbView.frame.origin.x - _leftThumbView.frame.origin.x - RANGESLIDER_THUMB_SIZE, 40);
 
     CGRect frame = _innerView.frame;
     frame.origin.x = _leftThumbView.frame.origin.x + _threshold;
@@ -131,7 +131,10 @@
 
 - (UIImage *)bundleImageNamed:(NSString *)imageName
 {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"%@/%@", self.resourceBundle, imageName]];
+	//without bundle
+	return [UIImage imageNamed:imageName];
+	
+    //return [UIImage imageNamed:[NSString stringWithFormat:@"%@/%@", self.resourceBundle, imageName]];
 }
 
 #pragma mark -
