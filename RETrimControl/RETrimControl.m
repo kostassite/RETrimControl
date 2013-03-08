@@ -41,7 +41,6 @@
     if (self) {
         self.threshold = 22;
         _resourceBundle = resourceBundle;
-        self.backgroundColor=[UIColor redColor];	
 //        _outerView = [[UIImageView alloc] initWithFrame:CGRectMake(_threshold, frame.size.height / 2 - 4, frame.size.width - 1 - _threshold * 2, 9)];
 //        _outerView.image = [[self bundleImageNamed:@"Outer"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
 //        [self addSubview:_outerView];
